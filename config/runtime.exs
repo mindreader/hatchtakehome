@@ -20,6 +20,15 @@ if System.get_env("PHX_SERVER") do
   config :hatch, HatchWeb.Endpoint, server: true
 end
 
+config :hatch, Hatch.EmailProvider,
+  # other stuff to validate incoming messages are from the provider
+  secret: System.get_env("EMAIL_PROVIDER_SECRET"),
+  send_url: System.get_env("EMAIL_PROVIDER_SEND_URL", "www.mailplus.app/api/email")
+
+config :hatch, Hatch.SmsProvider,
+  secret: System.get_env("SMS_PROVIDER_SECRET"),
+  send_url: System.get_env("SMS_PROVIDER_SEND_URL", "www.mailplus.app/api/sms")
+
 if config_env() == :prod do
   database_path =
     System.get_env("DATABASE_PATH") ||

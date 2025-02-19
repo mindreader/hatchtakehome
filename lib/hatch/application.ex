@@ -11,8 +11,7 @@ defmodule Hatch.Application do
       HatchWeb.Telemetry,
       Hatch.Repo,
       {Ecto.Migrator,
-        repos: Application.fetch_env!(:hatch, :ecto_repos),
-        skip: skip_migrations?()},
+       repos: Application.fetch_env!(:hatch, :ecto_repos), skip: skip_migrations?()},
       {DNSCluster, query: Application.get_env(:hatch, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Hatch.PubSub},
       # Start a worker by calling: Hatch.Worker.start_link(arg)

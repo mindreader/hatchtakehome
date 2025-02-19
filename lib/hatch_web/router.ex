@@ -7,5 +7,9 @@ defmodule HatchWeb.Router do
 
   scope "/api", HatchWeb do
     pipe_through :api
+
+    scope "/webhooks" do
+      post "/:provider", WebhookController, :receive
+    end
   end
 end
